@@ -26,7 +26,7 @@ Get your API key from [Manage API Keys](https://id.atlassian.com/manage/api-toke
 
 ## Download
 
-Get the latest app from [release section](/releases)
+Get the latest app from [release section](https://github.com/aashutoshrathi/Jira-Todo-MenubarApp/releases)
 
 ## Developement Setup
 
