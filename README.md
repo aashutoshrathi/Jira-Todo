@@ -35,3 +35,11 @@ Get the latest app from [release section](https://github.com/aashutoshrathi/Jira
 - Install dependencies using `pipenv install`
 - Change the `app.py` to tweak with app.
 - Build using `python3 setup.py py2app`
+
+### Thanks
+
+Special Thanks to [Ridiculously Uncomplicated macOS Python Statusbar apps](https://github.com/jaredks/rumps) for making this fun.
+
+### Author
+
+Aashutosh Rathi (https://aashutosh.dev)
