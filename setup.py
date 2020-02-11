@@ -4,10 +4,12 @@ APP = ['app.py']
 DATA_FILES = []
 OPTIONS = {
     'argv_emulation': True,
+    'iconfile': 'todo.icns',
     'plist': {
         'LSUIElement': True,
     },
     'packages': ['rumps', 'jira'],
+    'includes': ['json', 'subproccess', 'sys', 'os', 'webbrowser', 'jira']
 }
 
 setup(
