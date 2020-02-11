@@ -8,6 +8,7 @@ import rumps
 from jira import JIRA
 
 config = json.load(open(os.path.expanduser("~") + '/todo-app.json'))
+BOOTSTRAP = 'bootstrap'
 
 
 class JiraTodoApp(object):
@@ -16,13 +17,24 @@ class JiraTodoApp(object):
             "app_name": "My Todos",
         }
         self.app = rumps.App(self.config["app_name"])
-        self.set_up_menu()
-        self.refresh = rumps.MenuItem(title="Refresh", callback=self.get_issues)
-        self.app.menu = [self.refresh]
-
-    def set_up_menu(self):
+        self.app.quit_button = None
         self.app.title = "💻"
+        self.quit_button = rumps.MenuItem(title="Quit 👋🏻")
+        self.refresh_button = rumps.MenuItem(
+            title="Refresh ⚡️", callback=self.get_data)
+        self.get_data(BOOTSTRAP)
+
+    def get_data(self, callback):
+        if callback is not BOOTSTRAP:
+            rumps.notification("Just give me a second to get Issues from Jira",
+                               "Fetching your amazing ToDos", "Thanks for being patient")
+        self.prepare_list()
+
+    def prepare_list(self):
+        self.app.menu.clear()
+        self.app.menu.update(self.refresh_button)
         self.get_issues()
+        self.app.menu.update(self.quit_button)
 
     def open_url(self, item):
         id = item.title.split(':')[0]
@@ -43,11 +55,15 @@ class JiraTodoApp(object):
         for issue in issues:
             fields = jira.issue(issue.key).fields
 
-            issue_string = '{}:{} - {}'.format(issue.key,
-                                               fields.summary, fields.reporter)
+            issue_string = '{}: {} - {}'.format(issue.key,
+                                                fields.summary, fields.reporter)
             button = rumps.MenuItem(
                 title=issue_string, callback=self.open_url)
             self.app.menu.update(button)
+
+    @rumps.clicked('Quit 👋🏻')
+    def quit(_):
+        rumps.quit_application()
 
     def run(self):
         self.app.run()
