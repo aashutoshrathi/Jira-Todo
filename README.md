@@ -1,6 +1,12 @@
-# Jira Issues Menu Bar App
+# Jira ToDo
 
 A simple menu bar app which helps you in keeping track of your Jira tickets 🎟.
+
+It opens the issue on click and also you can update them with the refresh button.
+
+### Preview (masked sensitive content)
+
+![image](demo.png)
 
 ## Configuration
 
@@ -24,9 +30,18 @@ and make an object similar to this
 
 Get your API key from [Manage API Keys](https://id.atlassian.com/manage/api-tokens)
 
-## Download
+## Download (Currently not working)
 
 Get the latest app from [release section](https://github.com/aashutoshrathi/Jira-Todo-MenubarApp/releases)
+
+## Build and Run locally
+
+- Clone the repo
+- Install pipenv using `pip install -U pipenv`
+- Create new Virtual Env using `pipenv shell`
+- Install dependencies using `pipenv install`
+- Build with development hook using `python3 setup.py py2app -A`
+- Run the `Jira Todo.app` file in `dist/`
 
 ## Developement Setup
 
