@@ -54,9 +54,15 @@ class JiraTodoApp(object):
             'assignee = currentUser() AND status="TO DO"')
         for issue in issues:
             fields = jira.issue(issue.key).fields
-
             issue_string = '{}: {} - {}'.format(issue.key,
                                                 fields.summary, fields.reporter)
+            if showFixVersions:
+                versions = '-'
+                if len(fields.fixVersions) > 0:
+                    versions = ":".join(
+                        [version.name for version in fields.fixVersions])
+                issue_string = '{} | {} | {} - {}'.format(issue.key, versions,
+                                                          fields.summary, fields.reporter)
             button = rumps.MenuItem(
                 title=issue_string, callback=self.open_url)
             self.app.menu.update(button)
@@ -70,8 +76,9 @@ class JiraTodoApp(object):
 
 
 if __name__ == '__main__':
-    user = config['user']
-    server = config['server']
-    apikey = config['apikey']
+    user = config.get('user')
+    server = config.get('server')
+    apikey = config.get('apikey')
+    showFixVersions = config.get('showFixVersions')
     app = JiraTodoApp()
     app.run()

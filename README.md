@@ -24,7 +24,8 @@ and make an object similar to this
 {
   "user": "you@company.com",
   "apikey": "YOUR-API-KEY",
-  "server": "https://<COMPANY>.atlassian.net"
+  "server": "https://<COMPANY>.atlassian.net",
+  "showFixVersions": true // [add only if you need it]
 }
 ```
 
