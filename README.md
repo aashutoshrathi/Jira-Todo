@@ -25,7 +25,9 @@ and make an object similar to this
   "user": "you@company.com",
   "apikey": "YOUR-API-KEY",
   "server": "https://<COMPANY>.atlassian.net",
-  "showFixVersions": true // [add only if you need it]
+  "showFixVersions": true (add only if you need it),
+  "status": "To Do" (default: "To Do" & can be "In Progress" | "Code Reviewe" | "In QA" | custom status in your org),
+  "customRole": "Code Reviewer" (default: "assignee" & can be "reporter" | "Code Reviewer" | custom roles in your org)
 }
 ```
 
